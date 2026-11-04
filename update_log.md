@@ -16,3 +16,4 @@
 - 2026-11-04 | Phase 2 프런트엔드 | React/Vite 터미널 UI, 실제 API 세션·CSRF 클라이언트, DB 없는 메모리 mock 모드와 개발 안내를 추가. mock 흐름 테스트 1건, Vite 빌드, dev 서버 HTTP smoke 확인 통과. DB 파일·백엔드 설정은 변경하지 않음.
 - 2026-11-04 | 문서 동기화 | 프로젝트 구조 안내에 React/Vite, real/mock API, Node mock 테스트와 현재 검증 상태를 반영. 기획안·Phase 2 프롬프트에서 프런트 mock 확인을 먼저 하고 SQLite 통합은 마지막에 하도록 순서를 갱신.
 - 2026-11-04 | 문서 정합성 보완 | 기획안의 MVP 완료를 로컬 검증과 배포 준비로 구분하고, Phase 2를 mock 프런트 검증, Phase 3 마지막을 SQLite·실제 API 통합 검증으로 명확화. 프로젝트 안내서에 DB/JUnit 인계 순서와 별도 배포 승인 원칙을 재확인.
+- 2026-11-04 | SQLite 시작 | 개발 DB에 `users`, `channels`, `messages` 세 테이블만 있음을 확인하고 비어 있던 `users`에 ID 1 `admin` 계정을 추가. 비밀번호는 BCrypt 해시로 저장하고 입력값 일치를 확인. Gradle 테스트는 로컬 native-platform.dll 로드 실패로 실행되지 않음.
