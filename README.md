@@ -1,6 +1,6 @@
 # 사내메신저
 
-공개 채널 메시지 커뮤니티의 백엔드입니다. 개발·테스트 데이터베이스는 SQLite이며 Docker는 사용하지 않습니다.
+공개 채널 메시지 커뮤니티입니다. 백엔드는 개발·테스트에 SQLite를 사용하며 Docker는 사용하지 않습니다. 프런트엔드는 DB 없이 mock 모드로 화면 흐름을 확인할 수 있습니다.
 
 ## 준비 사항
 
@@ -18,6 +18,26 @@ gradle bootRun
 기본 SQLite 파일은 `data/sinae-messenger.db`에 생성됩니다. 다른 파일을 사용하려면 `DB_URL` 환경 변수에 `jdbc:sqlite:경로` 형식으로 지정합니다. 실행 시 `general`, `random` 공개 채널이 없으면 생성됩니다.
 
 Swagger UI: `http://localhost:8080/swagger-ui.html`
+
+## React 프런트엔드
+
+프로젝트 루트에서 의존성을 설치하고 개발 서버를 실행합니다.
+
+```bash
+npm install
+npm run dev:mock
+```
+
+`http://localhost:5173`에서 DB 없이 회원가입, 로그인, 닉네임 변경, 채널 이동, 메시지 작성과 polling 화면을 둘러볼 수 있습니다. mock 데이터는 브라우저 메모리에만 존재하며 새로고침하면 초기화됩니다.
+
+자동 mock API 테스트와 프런트엔드 빌드는 다음 명령으로 실행합니다.
+
+```bash
+npm run test:mock
+npm run build
+```
+
+실제 Spring Boot API와 연결할 때는 백엔드를 실행하고 `npm run dev`를 사용합니다. Vite가 `/api` 요청을 `http://localhost:8080`으로 전달합니다. 실제 API 연결에는 백엔드와 SQLite가 필요하므로 DB 작업은 보류하고 mock 모드에서 화면을 먼저 확인합니다.
 
 ## 테스트
 
@@ -47,5 +67,5 @@ gradle test
 
 ## Phase 1 한계
 
-현재 환경에 Gradle이 설치되어 있지 않아 빌드·테스트 실행이 필요합니다. 배포 환경의 데이터베이스와 SQLite 파일 보존 방식은 별도 결정 항목입니다.
+명령행 Gradle은 PATH에서 확인되지 않아 JUnit 테스트 결과를 확인해야 합니다. 프런트 mock 테스트와 Vite 빌드는 별도로 실행할 수 있습니다. 배포 환경의 데이터베이스와 SQLite 파일 보존 방식은 별도 결정 항목입니다.
 # RestfulAPI_CRUD
